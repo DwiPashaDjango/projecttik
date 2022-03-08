@@ -1,0 +1,119 @@
+{% load static %}
+{% include 'tmp2/header.html' %}
+ 
+{% include 'tmp2/topbar.html' %}
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+         <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-8 align-self-center">
+                <div class="card bg-white m-b-30">
+                    <div class="card-body new-user">
+                        <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
+                        <a href="{% url 'e_datapeminjam' %}" class="btn btn-success"><i class="fa fa-file-excel-o"></i></a>
+                        {% for message in messages %}
+                            <div class="alert alert-warning my-3">{{ message }}</div>
+                        {% endfor %}
+
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0">Username</th>
+                                        <th class="border-top-0">Judul Buku</th>
+                                        <th class="border-top-0">Kelas</th>
+                                        <th class="border-top-0">Tanggal Peminjaman</th>                                    
+                                        <th class="border-top-0">Tanggal Pengembalian</th>                                    
+                                        <th class="border-top-0">Action</th>                                    
+                                    </tr>
+                                </thead>
+                                {% for row in data %}
+                                <tbody>
+                                    <tr>
+                                        <td>{{ row.nama }}</td>
+                                        <td>{{ row.judul }}</td>
+                                        <td>{{ row.kelas }}</td>
+                                        <td>{{ row.tanggal }}</td>
+                                        <td>{{ row.t_pengembalian }}</td>
+                                        <td>
+                                            <a href="{% url 'hapus_p' row.id %}" class="btn btn-danger">Hapus</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table>         
+                        </div>
+                    </div>
+                    <nav aria-label="Page navigation example" class="my-3">
+                        <ul class="pagination justify-content-center">
+                            {% if data.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1" tabindex="-1">&laquo; Awal</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ data.previous_page_number }}">Sebelumnya</a>
+                                </li>
+                            {% endif %}
+                                <li class="page-item"><a class="page-link" href="#">{{ data.number }}</a></li>
+                            {% if data.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ data.next_page_number }}">Selanjutnya</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ data.paginator.num_pages }}">Terakhir &raquo; </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-12 col-xl-4">
+                <div class="card bg-white m-b-30">
+                    <div class="card-body new-user">
+                            <h5 class="header-title mt-0 mb-4">New {{ jdl }}</h5>
+                        <ul class="list-unstyled mb-0 pr-3" id="boxscroll2" tabindex="1" style="overflow: hidden; outline: none;">
+                            <li class="p-3">
+                                {% for row in data %}
+                                    <div class="media mb-5">
+                                        <div class="thumb float-left">
+                                            <a href="#">
+                                                <img class=" rounded-circle" src="/media/default.png" width="80">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <p class="media-heading mb-0">{{ row.nama }} <i class="fa fa-check text-success mr-1 pull-right"></i></p>
+                                            <small class="pull-right text-muted">{{ row.tanggal }}</small>
+                                            <small class="text-muted">{{ row.kelas }}</small>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </li>
+                        </ul>                                    
+                    </div>                                
+                </div>
+            </div>
+        </div>
+
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+{% include 'tmp2/footer.html' %}

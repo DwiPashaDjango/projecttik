@@ -1,0 +1,57 @@
+{% load static %}
+{% include 'tmp2/header.html' %}
+ 
+{% include 'tmp2/topbar.html' %}
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+         <div class="row">
+            <div class=" col-xl-6">
+                <div class="card m-b-30">
+                    <div class="card-body">  
+                        <button onclick="goBack()" class="btn btn-primary"><i class="mdi mdi-arrow-left-bold"></i></button>                                        
+                        <div class=" text-center">                        
+                            <img src="/media/default.png" alt="" class="rounded-circle img-thumbnail w-50">
+                            <h4 class="font-16">{{ user.username }}</h4>
+                            <a href="" class="text-muted font-14">{{ user.email }}</a>
+                            <hr>
+                            <!-- <ul class="list-unstyled list-inline mb-0 mt-3">
+                                <li class="list-inline-item"><a href="#"><i class="ti-facebook text-primary"></i></a></li>                                                    
+                                <li class="list-inline-item"><a href="#"><i class="ti-linkedin text-danger"></i></a></li>
+                                <li class="list-inline-item"><a href="#"><i class="ti-twitter-alt text-info"></i></a></li>
+                            </ul> -->
+                            <!-- <a href="#" class="btn btn-primary btn-sm mt-3">Edit Profile</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+<script>
+    function goBack() {
+        window.history.back(-1);
+    }
+</script>
+
+{% include 'tmp2/footer.html' %}

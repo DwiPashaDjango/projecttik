@@ -1,0 +1,158 @@
+{% load static %}
+{% include 'tmp3/header.html' %}
+ 
+{% include 'tmp3/topbar.html' %}
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xl-8 align-self-center">
+                <div class="card bg-white m-b-30">
+                    <div class="card-body new-user">
+                        <h5 class="header-title  mt-0">{{ jdl }}</h5>
+                        <!-- <form action="#" method="post">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="input-group col-lg-6 my-3">
+                                    <input type="text" class="form-control" placeholder="Search..."  name="cari" autocomplete="off">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form> -->
+                        <div class="table-responsive">
+                            <table class="table table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="border-top-0" style="width:60px;">Gambar</th>
+                                        <th class="border-top-0">Judul</th>
+                                        <th class="border-top-0">Penulis</th>
+                                        <th class="border-top-0">Penerbit</th>
+                                        <th class="border-top-0">Kelompok Buku</th>                                    
+                                        <th class="border-top-0">Jumlah Buku</th>
+                                        <!-- <th class="border-top-0">Action</th> -->
+                                    </tr>
+                                </thead>
+                                {% for buku in data %}
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {% if buku.cover %}
+                                                <img class="img-thumbnail"  src="{{ buku.cover.url }}" alt="user" width="50">
+                                            {% endif %}
+                                        <td>
+                                            <a href="{% url 'show' buku.id %}">{{ buku.judul }}</a>
+                                        </td>
+                                        <td>                                                                
+                                            {{ buku.penulis }}
+                                        </td>
+                                        <td>{{ buku.penerbit }}</td>
+                                        <td>{{ buku.kelompok_id.nama }}</td>                                   
+                                        <td>
+                                            {{  buku.jumlah }}
+                                        </td>
+                                        <!-- <td>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-info dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"> Aksi <span class="caret"></span> </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="#">Edit</a>
+                                                    <a class="dropdown-item" href="{% url 'hapusbuku' buku.id %}">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </td> -->
+                                    </tr>
+                                </tbody>
+                                {% endfor %}
+                            </table> 
+                        </div>
+                    </div>
+                 <div class="align-self-center">
+                    
+                </div>
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {% if data.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1" tabindex="-1">&laquo; Awal</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ data.previous_page_number }}">Sebelumnya</a>
+                            </li>
+                        {% endif %}
+                            <!-- <li class="page-item"><a class="page-link" href="#">{{ data.number }}</a></li> -->
+                        {% if data.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ data.next_page_number }}">Selanjutnya</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ data.paginator.num_pages }}">Terakhir &raquo; </a>
+                            </li>
+                        {% endif %}
+                        <!-- {% if data.has_previous %}
+                            <a href="?page=1">&laquo; First</a>
+                            <a href="?page={{ data.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        Page {{ data.number }} Of {{ data.paginator.num_pages }}
+
+                        {% if data.has_next %}
+                            <a href="?page={{ data.next_page_number }}">next</a>
+                            <a href="?page={{ data.paginator.num_pages }}">Last &raquo;</a>
+                        {% endif %} -->
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+
+            <div class="col-md-12 col-lg-12 col-xl-4">
+                    <div class="card bg-white m-b-30">
+                        <div class="card-body new-user">
+                            
+                            <h5 class="header-title mt-0 mb-4">Daftar Buku</h5>
+                            <ul class="list-unstyled mb-0 pr-3"  tabindex="1" style="overflow: hidden; outline: none;">
+                                    {% for buku in data %}
+                                    <li class="p-3">
+                                        <div class="media">
+                                            <div class="thumb float-left">
+                                                {% if buku.cover %}
+                                                    <a href="{% url 'show' buku.id %}"><img src="{{ buku.cover.url }}" width="60px"></a>
+                                                {% endif %}
+                                            </div>
+                                            <div class="media-body">
+                                                <a href="{% url 'show' buku.id %}"><p class="media-heading mb-0">{{ buku.judul }} <i class="fa fa-circle text-success mr-1 pull-right"></i></p></a>
+                                                <small class="pull-right text-muted">Now</small>
+                                                <small class="text-muted">{{ buku.penerbit }}</small>
+                                            </div>
+                                        </div>
+                                    {% endfor %}  
+                                </li>
+                            </ul>                                    
+                        </div>                              
+                    </div>
+                </div>
+        </div>
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+{% include 'tmp3/footer.html' %}

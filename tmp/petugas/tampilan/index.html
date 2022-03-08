@@ -1,0 +1,61 @@
+{% load static %}
+{% include 'tmp3/header.html' %}
+ 
+{% include 'tmp3/topbar.html' %}
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+        
+        <div class="card-deck-wrapper col-lg-5 mb-3">
+            <div class="card-deck">
+                <div class="card m-b-30">
+                     {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <div class="alert alert-success my-3">{{ message }}</div>
+                        {% else %}
+                            <div class="alert alert-danger my-3">{{ message }}</div>
+                        {% endif %}
+                    {% endfor %}
+                    <img class="card-img-top img-fluid" src="{{ data.cover.url }}" alt="Card image cap">
+                    <div class="card-body">
+                        <h4 class="card-title font-20 mt-0">{{ data.judul }}</h4>
+                        <p class="card-text">Penulis Buku : {{ data.penulis }}</p>
+                        <p class="card-text">Penerbit Buku : {{ data.penerbit }}</p>
+                        <p class="card-text">Keterangan Buku : 
+                            <span>{{ data.keterangan }}</span>
+                        </p>
+                        <p class="card-text">
+                            <small class="text-muted">{{ data.kelompok_id.nama }}</small>
+                        </p>
+                        <a href="{% url 'pinjam' %}" class="btn btn-primary mb-3 float-right">Pinjam</a>
+                        <button onclick="goBack()" class="btn btn-primary"><i class="mdi mdi-arrow-left-bold"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+<script>
+    function goBack() {
+    window.history.back(-1);
+    }
+</script>
+{% include 'tmp3/footer.html' %}

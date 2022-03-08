@@ -1,0 +1,104 @@
+{% load static %}
+
+
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        © 2022 Perpustakaan Digital MAN4CI.
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+         
+        <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0 text-center" id="mySmallModalLabel">Logout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p style="color: red;">
+                            Anda Yakin Ingin Keluar?
+                        </p>
+                        <hr>
+                        <div class="text-center mt-3">
+                            <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Batal</button>
+                            <a href="{% url 'login' %}" class="btn btn-primary waves-effect waves-light">Keluar</a>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+         
+
+         <script>
+
+              $(document).ready(function() {
+       
+              $("#boxscroll").niceScroll({cursorborder:"",cursorcolor:"#cecece",boxzoom:true});
+              $("#boxscroll2").niceScroll({cursorborder:"",cursorcolor:"#cecece",boxzoom:true}); 
+             
+              });
+            /* BEGIN SVG WEATHER ICON */
+            if (typeof Skycons !== 'undefined'){
+           var icons = new Skycons(
+               {"color": "#fff"},
+               {"resizeClear": true}
+               ),
+                   list  = [
+                       "clear-day", "clear-night", "partly-cloudy-day",
+                       "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+                       "fog"
+                   ],
+                   i;
+
+               for(i = list.length; i--; )
+               icons.set(list[i], list[i]);
+               icons.play();
+           };
+
+       // scroll
+
+     
+       </script>
+
+        <!-- Required datatable js -->
+        <script src="{% static 'admin/pages/dashborad.js' %}"></script>
+
+        <script src="{% static 'admin/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'plugins/datatables/dataTables.bootstrap4.min.js' %}"></script>
+        <!-- Buttons examples -->
+        <script src="{% static 'admin/plugins/datatables/dataTables.buttons.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/buttons.bootstrap4.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/jszip.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/pdfmake.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/vfs_fonts.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/buttons.html5.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/buttons.print.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/buttons.colVis.min.js' %}"></script>
+        <!-- Responsive examples -->
+        <script src="{% static 'admin/plugins/datatables/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'admin/plugins/datatables/responsive.bootstrap4.min.js' %}"></script>
+
+        <!-- Datatable init js -->
+        <script src="{% static 'admin/pages/datatables.init.js' %}"></script>
+        <!-- jQuery  -->
+        <script src="{% static 'admin/js/jquery.min.js' %}"></script>
+        <script src="{% static 'admin/js/popper.min.js' %}"></script>
+        <script src="{% static 'admin/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'admin/js/modernizr.min.js' %}"></script>
+        <script src="{% static 'admin/js/waves.js' %}"></script>
+        <script src="{% static 'admin/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'admin/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'admin/js/jquery.scrollTo.min.js' %}"></script>
+
+        <!-- App js -->
+        <script src="{% static 'admin/js/app.js' %}"></script>
+
+    </body>
+</html>

@@ -1,0 +1,81 @@
+{% load static %}
+{% include 'tmp2/header.html' %}
+
+{% include 'tmp2/topbar.html' %}
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+        <div class="card col-lg-7 mb-3">
+            <div class="card-body">
+                <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
+                {% for message in messages %}
+                    {% if message.tags == 'success' %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% else %}
+                         <div class="alert alert-danger">{{ message }}</div>
+                    {% endif %}
+                {% endfor %}
+
+                <form action="{% url 'tambah_buku' %}" method="post" enctype="multipart/form-data"> 
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="id_judul">Judul:</label> 
+                        <input type="text" name="judul" class="form-control" required id="id_judul" placeholder="Judul Buku">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_penulis">Penulis:</label> 
+                        <input type="text" name="penulis" class="form-control" required id="id_penulis" placeholder="Penulis">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_penerbit">Penerbit:</label>
+                        <input type="text" name="penerbit" class="form-control" required id="id_penerbit" placeholder="Penerbit">
+                    </div>
+                    <div class="form-group">
+                       <label for="id_jumlah">Jumlah:</label> 
+                       <input type="number" name="jumlah" class="form-control" required id="id_jumlah" placeholder="jumlah Buku">
+                    </div>
+                    <div class="form-group">
+                        {{ form.keterangan }}
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="id_cover">Cover:</label> 
+                        <input type="file" name="cover" class="form-control" accept="image/*" required id="id_cover">
+                    </div>
+                    <div class="form-group">
+                        <label for="id_kelompok_id">Kelompok Buku : </label> 
+                        {{ form.kelompok_id }}
+                    </div>
+                    <!-- {{ form.as_p }} -->
+
+                    <div class="float-right mt-2">
+                        <button type="reset" class="btn btn-secondary">Batal</button>
+                        <button type="submit" class="btn btn-primary">Kirim</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+{% include 'tmp2/footer.html' %}

@@ -1,0 +1,115 @@
+{% load static %}
+{% include 'tmp2/header.html' %}
+
+{% include 'tmp2/topbar.html' %}
+
+<div class="wrapper">
+    <div class="container-fluid">
+
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <a href="{% url 'export_xls' %}" class="btn btn-success my-3"><i class="fa fa-file-excel-o"></i></a>
+                        {% for message in messages %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% endfor %}
+
+                        <table id="datatable" class="table table-bordered text-center table table-responsive-xl">
+                            <thead>
+                                <tr>
+                                    <th>Gambar</th>
+                                    <th>Judul</th>
+                                    <th>Penulis</th>
+                                    <th>Penerbit</th>
+                                    <th>Kelompok Buku</th>
+                                    <th>Jumlah Buku</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            {% for buku in data %}
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            {% if buku.cover %}
+                                                <img src="{{ buku.cover.url }}" width="40px">
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ buku.judul }}</td>
+                                        <td>{{ buku.penulis }}</td>
+                                        <td>{{ buku.penerbit }}</td>
+                                        <td>{{ buku.kelompok_id.nama }}</td>
+                                        <td>{{ buku.jumlah }}</td>
+                                        <td>
+                                             <div class="btn-group">
+                                                <button type="button" class="btn btn-info dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false"> Aksi <span class="caret"></span> </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item" href="{% url 'ubah' buku.id %}">Edit</a>
+                                                    <a class="dropdown-item" href="{% url 'hapusbuku' buku.id %}">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                       
+                    </div>
+                     <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        {% if data.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page=1" tabindex="-1">&laquo; Awal</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ data.previous_page_number }}">Sebelumnya</a>
+                            </li>
+                        {% endif %}
+                            <li class="page-item"><a class="page-link" href="#">{{ data.number }}</a></li>
+                        {% if data.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ data.next_page_number }}">Selanjutnya</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ data.paginator.num_pages }}">Terakhir &raquo; </a>
+                            </li>
+                        {% endif %}
+                        <!-- {% if data.has_previous %}
+                            <a href="?page=1">&laquo; First</a>
+                            <a href="?page={{ data.previous_page_number }}">Previous</a>
+                        {% endif %}
+
+                        Page {{ data.number }} Of {{ data.paginator.num_pages }}
+
+                        {% if data.has_next %}
+                            <a href="?page={{ data.next_page_number }}">next</a>
+                            <a href="?page={{ data.paginator.num_pages }}">Last &raquo;</a>
+                        {% endif %} -->
+                    </ul>
+                </nav>
+                </div>
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+
+{% include 'tmp2/footer.html' %}

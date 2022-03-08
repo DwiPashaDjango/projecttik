@@ -1,0 +1,70 @@
+{% load static %}
+{% include 'tmp2/header.html' %}
+ 
+{% include 'tmp2/topbar.html' %}
+
+        <div class="wrapper">
+            <div class="container-fluid">
+
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="btn-group pull-right">
+                                <ol class="breadcrumb hide-phone p-0 m-0">
+                                    <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                    <li class="breadcrumb-item active">{{ jdl }}</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">{{ jdl }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title end breadcrumb -->
+                <div class="card col-lg-8 mb-3">
+                    <div class="card-body">
+                        <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success my-2">{{ message }}</div>
+                            {% else %}
+                                <div class="alert alert-danger my-2">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+                        <form action="{% url 'tambahPetugas' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group mb-4">
+                                {{ form.email }}
+                            </div>
+                            <div class="form-group mb-4">
+                                {{ form.password1 }}
+                            </div>
+                            <div class="form-group mb-4">
+                                {{ form.password2 }}
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="checkbox my-2">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="is_admin" id="id_is_admin" class="custom-control-input" checked="" >
+                                        <label class="custom-control-label" for="customCheck3">Admin</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- {{ form.as_p }} -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary shadow-2 mb-4 float-right ">Kirim</button>
+                                <button type="reset" class="btn btn-secondary shadow-2 mb-4 float-right mr-2">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+
+        {% include 'tmp2/footer.html' %}

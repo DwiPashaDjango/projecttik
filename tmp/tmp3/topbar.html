@@ -1,0 +1,105 @@
+    {% load static %}
+       <!-- Navigation Bar-->
+        <header id="topnav">
+            <div class="topbar-main">
+                <div class="container-fluid">
+
+                    <!-- Logo container-->
+                    <div class="logo">
+                        <!-- Text Logo -->
+                        <!--<a href="#" class="logo">-->
+                        <!--Annex-->
+                        <!--</a>-->
+                        <!-- Image Logo -->
+                        <a href="{% url 'petugas' %}" class="logo">
+                            <img src="https://elearning.man4cirebon.sch.id/__statics/upload/logo1634915297.png" alt="" width="45px" class="logo-small">
+                            <img src="https://elearning.man4cirebon.sch.id/__statics/upload/logo1634915297.png" alt="" width="45px" class="logo-large">
+                        </a>
+
+                    </div>
+                    <!-- End Logo container-->
+
+
+                    <div class="menu-extras topbar-custom">
+                        <ul class="list-inline float-right mb-0">
+                           
+                            <!-- User-->
+                            <li class="list-inline-item dropdown notification-list">
+                                <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                                   aria-haspopup="false" aria-expanded="false">
+                                    <img src="/media/default.png" alt="user" class="rounded-circle">
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                    <!-- item-->
+                                    <div class="dropdown-item noti-title">
+                                        <h5>HI {{ user.username }}</h5>
+                                    </div>
+                                    <a class="dropdown-item" href="{% url 'profile' %}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-animation="slideInRight" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-sm"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+                                </div>
+                            </li>
+                            <li class="menu-item list-inline-item">
+                                <!-- Mobile menu toggle-->
+                                <a class="navbar-toggle nav-link">
+                                    <div class="lines">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+                                </a>
+                                <!-- End mobile menu toggle-->
+                            </li>
+
+                        </ul>
+                    </div>
+                    <!-- end menu-extras -->
+
+                    <div class="clearfix"></div>
+
+                </div> <!-- end container -->
+            </div>
+            <!-- end topbar-main -->
+
+            <!-- MENU Start -->
+            <div class="navbar-custom">
+                <div class="container-fluid">
+                    <div id="navigation">
+                        <!-- Navigation Menu-->
+                        <ul class="navigation-menu">
+
+                            <li class="has-submenu">
+                                <a href="{% url 'petugas' %}"><i class="mdi mdi-home"></i>Home</a>
+                            </li>
+                             <li class="has-submenu">
+                                <a href="{% url 'databuku' %}"><i class="mdi mdi-book-open-page-variant"></i>Rak Buku</a>
+                            </li>
+                             <li class="has-submenu">
+                                <a href="{% url 'pinjam' %}"><i class="mdi mdi-clipboard-outline"></i>Pinjam Buku</a>
+                            </li>
+                             <li class="has-submenu">
+                                <a href="{% url 'pengembalian' %}"><i class="mdi mdi-book-minus"></i>Pengembalian Buku</a>
+                            </li>
+                             <li class="has-submenu">
+                                <a href="#"><i class="mdi mdi-google-pages"></i>Lainnya</a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="{% url 'request' %}">Pre-order Buku</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                          <li class="has-submenu">
+                              <a href="{% url 'login' %}" data-animation="slideInRight" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-sm"><i class="mdi mdi-logout"></i>Logout</a>
+                          </li>
+                        </ul>
+                        <!-- End navigation menu -->
+                    </div> <!-- end #navigation -->
+                </div> <!-- end container -->
+            </div> <!-- end navbar-custom -->
+        </header>
+        <!-- End Navigation Bar-->
+
+
+       

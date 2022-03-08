@@ -1,0 +1,72 @@
+{% load static %}
+{% include 'tmp3/header.html' %}
+ 
+{% include 'tmp3/topbar.html' %}
+
+        <div class="wrapper">
+            <div class="container-fluid">
+
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="btn-group pull-right">
+                                <ol class="breadcrumb hide-phone p-0 m-0">
+                                    <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                    <li class="breadcrumb-item active">{{ jdl }}</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">{{ jdl }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title end breadcrumb -->
+
+
+                <div class="card col-lg-6">
+                    <div class="card-body">
+                        <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success">{{ message }}</div>
+                            {% else %}
+                                <div class="alert alert-danger">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+
+                        <form action="{% url 't_buku' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+
+                            <div class="form-group mb-3">
+                                {{ form.judul }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.penulis }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.penerbit }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.jumlah }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.cover }}
+                            </div>
+                            <div class="form-group mb-3">
+                                {{ form.kelompok_id }}
+                            </div>
+                            <!-- {{ form.as_p }} -->
+
+                            <div>
+                                <button class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+
+{% include 'tmp3/footer.html' %}

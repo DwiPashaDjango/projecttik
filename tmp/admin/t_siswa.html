@@ -1,0 +1,78 @@
+{% load static %}
+{% include 'tmp2/header.html' %}
+ 
+{% include 'tmp2/topbar.html' %}
+
+        <div class="wrapper">
+            <div class="container-fluid">
+
+                <!-- Page-Title -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="page-title-box">
+                            <div class="btn-group pull-right">
+                                <ol class="breadcrumb hide-phone p-0 m-0">
+                                    <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                    <li class="breadcrumb-item active">{{ jdl }}</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">{{ jdl }}</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title end breadcrumb -->
+                <div class="card col-lg-8 mb-3">
+                    <div class="card-body">
+                        <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
+                        {% for message in messages %}
+                            {% if message.tags == 'success' %}
+                                <div class="alert alert-success my-2">{{ message }}</div>
+                            {% else %}
+                                <div class="alert alert-danger my-2">{{ message }}</div>
+                            {% endif %}
+                        {% endfor %}
+                        <form action="{% url 'tambahsiswa' %}" method="post">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <label for="username">Full Name</label>
+                                {{ form.username }}
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="email">Email Adress</label>
+                                {{ form.email }}
+                            </div>
+                             <div class="form-group mb-4">
+                                 <label for="password1">Password</label>
+                                {{ form.password1 }}
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="password2">Repeat Password</label>
+                                {{ form.password2 }}
+                            </div>
+                             <div class="form-group mb-4">
+                                <div class="checkbox my-2">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" name="is_siswa" id="id_is_siswa" class="custom-control-input" checked="" >
+                                        <label class="custom-control-label" for="customCheck3">Siswa</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="kelas_id">Kelas : </label>
+                                {{ form.kelas_id }}
+                            </div>
+                            <!-- {{ form.as_p }} -->
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary shadow-2 mb-4 float-right ">Kirim</button>
+                                <button type="reset" class="btn btn-secondary shadow-2 mb-4 float-right mr-2">Batal</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div> <!-- end container -->
+        </div>
+        <!-- end wrapper -->
+
+        {% include 'tmp2/footer.html' %}
