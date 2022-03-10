@@ -39,6 +39,8 @@ urlpatterns = [
     path('export_4/rqst/', views.e_request, name='e_request'),
     path('tambahsiswa/', views.tambahsiswa, name='tambahsiswa'),
     path('t_kelompok/', views.t_kelompok, name='t_kelompok'),
+    path('t_kelas/', views.t_kelas, name='t_kelas'),
+    path('kls/hapus/<int:id_kelas>', views.h_kelas, name='h_kelas'),
 
     # url siswa
     path('petugas', views.petugas, name='petugas'),

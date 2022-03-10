@@ -35,11 +35,26 @@
                                  <div class="alert alert-danger">{{ message }}</div>
                             {% endif %}
                         {% endfor %}                                 
-                        <div class=" text-center">                        
-                            <img src="/media/default.png" alt="" class="rounded-circle img-thumbnail w-50">
-                            <h4 class="font-16">Username : <span>{{ user.username }}</span></h4>
-                            <a  class="text-muted font-14">Email : {{ user.email }}</a>
-                            <p  class="text-muted font-14 my-2">Kelas : {{ user.kelas_id }}</p>
+                        <div class="">          
+                            <div class="text-center">
+                                 <img src="/media/default.png" alt="" class="rounded-circle img-thumbnail w-50 mb-3">
+                            </div>              
+                            <form action="" class="form mt-3">
+                                {% csrf_token %}
+
+                                <div class="form-group mb-4">
+                                    <label for="id_username">Username</label>
+                                    <input type="text" class="form-control" value="{{ user.username }}" readonly>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="id_username">Email Adress</label>
+                                    <input type="text" class="form-control" value="{{ user.email }}" readonly>
+                                </div>
+                                <div class="form-group mb-4">
+                                    <label for="id_username">Kelas</label>
+                                    <input type="text" class="form-control" value="{{ user.kelas_id }}" readonly>
+                                </div>
+                            </form>
                             <hr>
                             <!-- <ul class="list-unstyled list-inline mb-0 mt-3">
                                 <li class="list-inline-item"><a href="#"><i class="ti-facebook text-primary"></i></a></li>                                                    

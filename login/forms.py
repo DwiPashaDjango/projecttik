@@ -2,7 +2,7 @@ from pyexpat import model
 from tkinter import Widget
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import Pengembalian, Pinjam, Request, User, Buku, Kelompok
+from .models import Kelas, Pengembalian, Pinjam, Request, User, Buku, Kelompok
 from django.forms import ModelForm
 from import_export.fields import Field
 
@@ -223,3 +223,17 @@ class Kelompokbuku(forms.ModelForm):
     class Meta:
         model = Kelompok
         fields = ['nama', 'keterangan']
+
+
+class Tambahkelas(forms.ModelForm):
+    kls = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control', 'placeholder': 'Nama Kelas'
+            }
+        )
+    )
+
+    class Meta:
+        model = Kelas
+        fields = ['kls']

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import Kelompokbuku, Pre_order, SignUpForm, LoginForm, Formbuku, pengembalianBuku, pinjamBuku
+from .forms import Kelompokbuku, Pre_order, SignUpForm, LoginForm, Formbuku, Tambahkelas, pengembalianBuku, pinjamBuku
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import Buku, Pengembalian, Pinjam, Request, User
+from .models import Buku, Pengembalian, Pinjam, Request, User, Kelas
 from django.core.paginator import Paginator
 from login.resouce import Bukuresouce, Export_datapeminjam, Export_datapengembalian, Export_datarequest
 # Create your views here.
@@ -315,6 +315,41 @@ def t_kelompok(request):
             'jdl': judul,
         }
     return render(request, 'admin/t_kelompok.html', konteks)
+
+
+def t_kelas(request):
+    kls = Kelas.objects.all()
+
+    p = Paginator(Kelas.objects.all(), 5)
+    page = request.GET.get('page')
+    data = p.get_page(page)
+
+    if request.POST:
+        form = Tambahkelas(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Berhasil menambahkan kelas')
+            return redirect('t_kelas')
+        else:
+            messages.error(request, 'gagal menambahkan kelas')
+            return redirect('t_kelas')
+    else:
+        form = Tambahkelas
+        konteks = {
+            'form': form,
+            'data': data,
+            'jdl': 'Tambah Kelas',
+            'kls': kls,
+        }
+    return render(request, 'admin/t_kelas.html', konteks)
+
+
+def h_kelas(request, id_kelas):
+    kls = Kelas.objects.filter(id=id_kelas)
+    kls.delete()
+
+    messages.success(request, 'Berhasil Di Hapus')
+    return redirect('t_kelas')
 # page siswa
 
 
