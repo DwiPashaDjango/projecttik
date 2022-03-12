@@ -8,6 +8,11 @@ from login.resouce import Bukuresouce, Export_datapeminjam, Export_datapengembal
 # Create your views here.
 
 
+def LogoutView(request):
+    messages.success(request, 'Berhasil Keluar')
+    redirect('login')
+
+
 def daftar(request):
     judul = 'Perpustakaan Digital'
     msg = None

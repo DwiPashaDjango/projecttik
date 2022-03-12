@@ -40,8 +40,8 @@
                                         <th class="border-top-0">Username</th>
                                         <th class="border-top-0">Judul Buku</th>
                                         <th class="border-top-0">Role User</th>                                    
-                                        <th class="border-top-0">Date joined</th>                                  
-                                        <th class="border-top-0">Action</th>                                    
+                                        <th class="border-top-0">Di Buat</th>                                  
+                                        <th class="border-top-0">Aksi</th>                                    
                                     </tr>
                                 </thead>
                                 {% for row in data %}
@@ -52,7 +52,14 @@
                                         <td>{{ row.is_admin }}</td>
                                         <td>{{ row.date_joined }}</td>
                                         <td>
-                                            <a href="{% url 'u_hapus' row.id %}" class="btn btn-danger">Hapus</a>
+                                            <div class="btn-group">
+                                                <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                   Aksi
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a href="{% url 'u_hapus' row.id %}" class="dropdown-item">Hapus</a>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -4,12 +4,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from login.viewset_api import *
 from rest_framework import routers
+from django.contrib.auth.views import LogoutView
 
 router = routers.DefaultRouter()
 router.register('buku', Bukuviewset)
 
 urlpatterns = [
     path('', views.login_view, name='login'),
+    path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     # path('daftar/', views.daftar, name='daftar'),
     # path('keluar/', views.__loader__(next_page='masuk'), name='keluar'),
 
