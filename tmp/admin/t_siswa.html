@@ -27,9 +27,25 @@
                         <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
                         {% for message in messages %}
                             {% if message.tags == 'success' %}
-                                <div class="alert alert-success my-2">{{ message }}</div>
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ message }}",
+                                        text: "Tambah Data Siswa",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
                             {% else %}
-                                <div class="alert alert-danger my-2">{{ message }}</div>
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ message }}",
+                                        text: "Tambah Data Siswa",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
                             {% endif %}
                         {% endfor %}
                         <form action="{% url 'tambahsiswa' %}" method="post">

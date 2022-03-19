@@ -36,6 +36,7 @@
                                     </div>
                                     <a class="dropdown-item" href="{% url 'profile_admin' %}"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
                                     <div class="dropdown-divider"></div>
+                                    <!-- <a class="dropdown-item" href="#" onclick="keluar()"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a> -->
                                     <a class="dropdown-item" href="#" data-animation="slideInRight" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-sm"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
                                 </div>
                             </li>
@@ -97,9 +98,9 @@
                                 <ul class="submenu megamenu">
                                     <li>
                                         <ul>
-                                             <li>
-                                                <a href="{% url 's_buku' %}">Data Buku</a>
-                                            </li>
+                                             <!-- <li>
+                                                <a href="#">Data Buku</a>
+                                            </li> -->
                                             <li>
                                                 <a href="{% url 'd_peminjam' %}"></i>Data Peminjaman Buku</a>
                                             </li>
@@ -120,6 +121,7 @@
                                 </ul>
                             </li>
                             <li class="has-submenu">
+                               <!-- <a class="dropdown-item" href="#" data-animation="slideInRight" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-sm"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a> -->
                                <a class="dropdown-item" href="#" data-animation="slideInRight" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-sm"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
                             </li>
                             <br>
@@ -132,4 +134,23 @@
         <!-- End Navigation Bar-->
 
 
-       
+       <!-- <script>
+           function keluar() {
+               swal.fire({
+                   title: 'kamu Yakin Ingin Keluar',
+                   text: 'logout',
+                   icon: 'question',
+                   confirmButton: true,
+                   showCancelButton: true,
+                   cancelButtonColor: '#d33',
+                   confirmButtonColor: '#3085d6',
+                   cancelButtonText: 'Keluar',
+                   confirmButtonText: 'Batal'
+               })
+               .then(function(keluar) {
+                    if(keluar.isKeluar) {
+                        window.location.href = "/logout/"
+                    }
+               })  
+           }
+       </script> -->

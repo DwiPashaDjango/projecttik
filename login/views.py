@@ -2,15 +2,10 @@ from django.shortcuts import render, redirect, HttpResponse
 from .forms import Kelompokbuku, Pre_order, SignUpForm, LoginForm, Formbuku, Tambahkelas, pengembalianBuku, pinjamBuku
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import Buku, Pengembalian, Pinjam, Request, User, Kelas
+from .models import Buku, Pengembalian, Pengunjung, Pinjam, Request, User, Kelas
 from django.core.paginator import Paginator
 from login.resouce import Bukuresouce, Export_datapeminjam, Export_datapengembalian, Export_datarequest
 # Create your views here.
-
-
-def LogoutView(request):
-    messages.success(request, 'Berhasil Keluar')
-    redirect('login')
 
 
 def daftar(request):
@@ -43,9 +38,11 @@ def login_view(request):
 
             if user is not None and user.is_admin:
                 login(request, user)
+                messages.success(request, 'Mohon Menunggu Sebentar')
                 return redirect('home_admin')
             elif user is not None and user.is_siswa:
                 login(request, user)
+                messages.success(request, 'Mohon Menunggu Sebentar')
                 return redirect('petugas')
             else:
                 messages.error(request, 'Akun Tidak Terdaftar')
@@ -86,12 +83,12 @@ def tambahsiswa(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
-            messages.success(request, 'Berhasil Menambahkan User')
+            messages.success(request, 'Berhasil Menambahkan Siswa')
             form.save()
-            msg = 'user created'
+            msg = 'Siswa created'
             return redirect('tambahsiswa')
         else:
-            messages.error(request, 'Gagal Gagal Menambahkan User')
+            messages.error(request, 'Gagal Gagal Menambahkan Siswa')
             return redirect('tambahsiswa')
     else:
         form = SignUpForm()
@@ -240,7 +237,7 @@ def r_hapus(request, id_request):
     rqst = Request.objects.filter(id=id_request)
     rqst.delete()
 
-    messages.success(request, 'Berhasil Di Hapus')
+    messages.success(request, 'Data Request Berhasil Di Hapus')
     return redirect('d_request')
 
 
@@ -355,6 +352,25 @@ def h_kelas(request, id_kelas):
 
     messages.success(request, 'Berhasil Di Hapus')
     return redirect('t_kelas')
+
+
+def d_pengunjung(request):
+    tmp = 'admin/d_pengunjung.html'
+    data = Pengunjung.objects.all()
+
+    konteks = {
+        'data': data,
+        'jdl': 'Data Pengunjung',
+    }
+    return render(request, tmp, konteks)
+
+
+def h_pengunjung(request, id_pengunjung):
+    data = Pengunjung.objects.filter(id=id_pengunjung)
+    data.delete()
+
+    messages.success(request, 'Data berhasil Di Hapus')
+    return redirect('d_pengunjung')
 # page siswa
 
 

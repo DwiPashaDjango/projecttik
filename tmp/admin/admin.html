@@ -3,28 +3,170 @@
  
 {% include 'tmp2/topbar.html' %}
 
-        <div class="wrapper">
-            <div class="container-fluid">
+<div class="wrapper">
+    <div class="container-fluid">
 
-                <!-- Page-Title -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="page-title-box">
-                            <div class="btn-group pull-right">
-                                <ol class="breadcrumb hide-phone p-0 m-0">
-                                    <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
-                                    <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                    <li class="breadcrumb-item active">{{ jdl }}</li>
-                                </ol>
+        <!-- Page-Title -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <div class="btn-group pull-right">
+                        <ol class="breadcrumb hide-phone p-0 m-0">
+                            <!-- <li class="breadcrumb-item"><a href="#">{{ sb }}</a></li> -->
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item active">{{ jdl }}</li>
+                        </ol>
+                    </div>
+                    <h4 class="page-title">{{ jdl }}</h4>
+                </div>
+            </div>
+        </div>
+        <!-- end page title end breadcrumb -->
+
+         <div class="row">
+            <!-- Column -->
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <div class="col-3 align-self-center">
+                                <div class="round">
+                                    <i class="mdi mdi-account"></i>
+                                </div>
                             </div>
-                            <h4 class="page-title">{{ jdl }}</h4>
+                            <div class="col-8 align-self-center text-center">
+                                <div class="m-l-10">
+                                    <h5 class="mt-0 round-inner">Profile Anda</h5>
+                                    <a href="{% url 'profile_admin' %}">Selengkapnya</a>                                                                 
+                                </div>
+                            </div>
+                            <!-- <div class="col-3 align-self-end align-self-center">
+                                <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
+                            </div> -->
                         </div>
                     </div>
                 </div>
-                <!-- end page title end breadcrumb -->
-
-            </div> <!-- end container -->
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <div class="col-3 align-self-center">
+                                <div class="round">
+                                    <i class="mdi mdi-account-multiple"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 align-self-center text-center">
+                                <div class="m-l-10">
+                                    <h5 class="mt-0 round-inner">Data User</h5>
+                                    <a href="{% url 'd_user' %}">Selengkapnya</a>                                                                 
+                                </div>
+                            </div>
+                            <!-- <div class="col-3 align-self-end align-self-center">
+                                <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>{{ user.id }}</span></h6>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <div class="col-3 align-self-center">
+                                <div class="round">
+                                    <i class="mdi mdi-book-open"></i>
+                                </div>
+                            </div>
+                            <div class="col-7 align-self-center text-center">
+                                <div class="m-l-10">
+                                    <h5 class="mt-0 round-inner">Data Buku</h5>
+                                    <a href="{% url 's_buku' %}">Selengkapnya</a>                                                                 
+                                </div>
+                            </div>
+                            <!-- <div class="col-3 align-self-end align-self-center">
+                                <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Column -->
+            <div class="col-md-6 col-lg-6 col-xl-3">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="d-flex flex-row">
+                            <div class="col-3 align-self-center">
+                                <div class="round">
+                                    <i class="mdi mdi-webcam"></i>
+                                </div>
+                            </div>
+                            <div class="col-8 align-self-center text-center">
+                                <div class="m-l-10">
+                                    <h5 class="mt-0 round-inner">Pengunjung</h5>
+                                    <a href="{% url 'd_pengunjung' %}">Selengkapnya</a>                                                                 
+                                </div>
+                            </div>
+                            <!-- <div class="col-3 align-self-end align-self-center">
+                                <h6 class="m-0 float-right text-center text-danger"> <i class="mdi mdi-arrow-down"></i> <span>5.26%</span></h6>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!-- end wrapper -->
 
-        {% include 'tmp2/footer.html' %}
+        <div class="row">
+            <div class="col-lg">
+                <div class="card m-b-30">
+                    <div class="card-body">
+                        <div class="media m-b-30">
+                            <img class="d-flex  rounded-circle" src="/media/default.png" alt="Generic placeholder image" height="50">
+                            <div class="media-body">
+                                <h5 class="mt-0 font-18">#</h5>
+                                #
+
+                                <div class="media mt-3">
+                                    <a class="d-flex pr-3" href="#">
+                                        <img src="/media/default.png" alt="Generic placeholder image" height="30" class="rounded-circle">
+                                    </a>
+                                    <div class="media-body">
+                                        <h5 class="mt-0" font="20">#</h5>
+                                        #
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg mb-3">
+                        <form class="#">
+                            <label class="sr-only" for="inlineFormInputName2">Name</label>
+                            <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Name">
+                            
+                            <div class="float-right">
+                                <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div> <!-- end container -->
+</div>
+<!-- end wrapper -->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script>
+    var nagCount = 2;
+    alertify.set('notifier','position', 'top-left');
+    var msg = alertify.success('Selamat Datang Di Perpustakaan Digital MAN 4 CIREBON',0, function(){
+            if(--nagCount > 0){
+            setTimeout(function(){msg.push("Hallo {{ user.username }} ");}, 500);
+            }
+    });
+</script>
+
+{% include 'tmp2/footer.html' %}

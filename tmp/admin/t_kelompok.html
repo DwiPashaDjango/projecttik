@@ -26,13 +26,29 @@
         <div class="card col-lg-7 mb-3">
             <div class="card-body">
 
-                {% for message in messages %}
-                    {% if message.tags == 'success' %}
-                        <div class="alert alert-success">{{ message }}</div>
-                    {% else %}
-                        <div class="alert alert-danger">{{ message }}</div>
-                    {% endif %}
-                {% endfor %}
+               {% for row in messages %}
+                            {% if row.tags == 'success' %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% else %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% endif %}
+                        {% endfor %}
 
                 <form action="{% url 't_kelompok' %}" method="post">
                     {% csrf_token %}

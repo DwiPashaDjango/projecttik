@@ -26,15 +26,32 @@
         <div class="card col-lg-7 mb-3">
             <div class="card-body">
                 <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
-                {% for message in messages %}
-                    {% if message.tags == 'success' %}
-                        <div class="alert alert-success">{{ message }}</div>
-                    {% else %}
-                         <div class="alert alert-danger">{{ message }}</div>
-                    {% endif %}
-                {% endfor %}
+                    {% for row in messages %}
+                        {% if row.tags == 'success' %}
+                            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: '{{ row }}',
+                                    showConfirmButton: false,
+                                    timer: '20000'
+                                })
+                            </script>
+                        {% else %}
+                            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                            <script>
+                                swal.fire({
+                                    title: "{{ row }}",
+                                    text: "ubah data buku",
+                                    icon: "warning",
+                                    reverseButtons: true
+                                })
+                            </script>
+                        {% endif %}
+                    {% endfor %}
 
-                <form action="{% url 'tambah_buku' %}" method="post" enctype="multipart/form-data"> 
+                <form action="{% url 'tambah_buku' %}" method="post" enctype="multipart/form-data" id="kirim"> 
                     {% csrf_token %}
 
                     <div class="form-group">

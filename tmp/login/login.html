@@ -46,13 +46,29 @@
                     <h3 class="mb-4">{{ jdl }}</h3>
 
 
-                    {% for message in messages %}
-                       {% if message.tags == 'success' %}
-                             <div class="alert alert-success">{{ message }}</div>
-                       {% else %}
-                             <div class="alert alert-danger">{{ message }}</div>
-                       {% endif %}
-                    {% endfor %}
+                     {% for row in messages %}
+                            {% if row.tags == 'success' %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "Sedang Loading",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% else %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "Silahkan minta petugas perpustakaan untuk mendaftarkan",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% endif %}
+                        {% endfor %}
 
                     <form action="{% url 'login' %}" method="post">
                         {% csrf_token %}

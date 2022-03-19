@@ -28,8 +28,28 @@
                 <div class="card m-b-30">
                     <div class="card-body">
                         <a href="{% url 'e_request' %}" class="btn btn-success my-3"><i class="fa fa-file-excel-o"></i></a>
-                        {% for message in messages %}
-                            <div class="alert alert-success">{{ message }}</div>
+                        {% for row in messages %}
+                            {% if row.tags == 'success' %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% else %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% endif %}
                         {% endfor %}
 
                         <table  class="table table-bordered table-responsive-md text-center">

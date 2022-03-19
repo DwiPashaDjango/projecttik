@@ -29,10 +29,29 @@
                     <div class="card-body new-user">
                         <h5 class="header-title mb-4 mt-0">{{ jdl }}</h5>
                         <a href="{% url 'e_datapengembalian' %}" class="btn btn-success"><i class="fa fa-file-excel-o"></i></a>
-                        {% for message in messages %}
-                            <div class="alert alert-warning my-3">{{ message }}</div>
+                        {% for row in messages %}
+                            {% if row.tags == 'success' %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% else %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% endif %}
                         {% endfor %}
-
                         <div class="table-responsive">
                             <table class="table table-hover text-center">
                                 <thead>

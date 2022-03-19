@@ -36,36 +36,9 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
-         <script type="text/javascript">
-
-            $('.btn-animation').on('click', function(br) {
-           //adding animation
-           $('.modal .modal-dialog').attr('class', 'modal-dialog  ' + $(this).data("animation") + '  animated');
-           });
-
-            $(document).ready(function() {
-                $('#datatable2').DataTable();  
-            } );
-        </script>
 
         <!-- Required datatable js -->
-        <script src="{% static 'plugins/datatables/jquery.dataTables.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/dataTables.bootstrap4.min.js' %}"></script>
-        <!-- Buttons examples -->
-        <script src="{% static 'plugins/datatables/dataTables.buttons.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/buttons.bootstrap4.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/jszip.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/pdfmake.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/vfs_fonts.js' %}"></script>
-        <script src="{% static 'plugins/datatables/buttons.html5.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/buttons.print.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/buttons.colVis.min.js' %}"></script>
-        <!-- Responsive examples -->
-        <script src="{% static 'plugins/datatables/dataTables.responsive.min.js' %}"></script>
-        <script src="{% static 'plugins/datatables/responsive.bootstrap4.min.js' %}"></script>
-
-        <!-- Datatable init js -->
-        <script src="{% static 'pages/datatables.init.js' %}"></script>
+         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <!-- jQuery  -->
         <script src="{% static 'admin/js/jquery.min.js' %}"></script>
         <script src="{% static 'admin/js/popper.min.js' %}"></script>
@@ -75,9 +48,12 @@
         <script src="{% static 'admin/js/jquery.slimscroll.js' %}"></script>
         <script src="{% static 'admin/js/jquery.nicescroll.js' %}"></script>
         <script src="{% static 'admin/js/jquery.scrollTo.min.js' %}"></script>
+          <!-- Alertify js -->
+        <script src="{% static 'admin/plugins/alertify/js/alertify.js' %}"></script>
+        <script src="{% static 'admin/pages/alertify-init.js' %}"></script>
 
         <!-- App js -->
         <script src="{% static 'admin/js/app.js' %}"></script>
-
+        <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     </body>
 </html>

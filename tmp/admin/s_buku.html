@@ -28,10 +28,30 @@
                 <div class="card m-b-30">
                     <div class="card-body">
                         <a href="{% url 'export_xls' %}" class="btn btn-success my-3"><i class="fa fa-file-excel-o"></i></a>
-                        {% for message in messages %}
-                            <div class="alert alert-success">{{ message }}</div>
+                        
+                        {% for row in messages %}
+                            {% if row.tags == 'success' %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "Data Yang Di Hapus Tidak Bisa Di Kembalikan",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% else %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "Data Yang Di Hapus Tidak Bisa Di Kembalikan",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% endif %}
                         {% endfor %}
-
                         <table id="datatable" class="table table-bordered text-center table table-responsive-xl">
                             <thead>
                                 <tr>

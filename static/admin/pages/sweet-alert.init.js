@@ -62,35 +62,64 @@
         });
 
         //Parameter
-        $('#sa-params').click(function () {
-            swal({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Yes, delete it!',
-                cancelButtonText: 'No, cancel!',
-                confirmButtonClass: 'btn btn-success',
-                cancelButtonClass: 'btn btn-danger m-l-10',
-                buttonsStyling: false
-            }).then(function () {
-                swal(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            }, function (dismiss) {
-                // dismiss can be 'cancel', 'overlay',
-                // 'close', and 'timer'
-                if (dismiss === 'cancel') {
-                    swal(
-                        'Cancelled',
-                        'Your imaginary file is safe :)',
-                        'error'
-                    )
-                }
-            })
-        });
+        // $('#sa-params').click(function () {
+        //     swal({
+        //         title: 'Are you sure?',
+        //         text: "You won't be able to revert this!",
+        //         type: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Yes, delete it!',
+        //         cancelButtonText: 'No, cancel!',
+        //         confirmButtonClass: 'btn btn-success',
+        //         cancelButtonClass: 'btn btn-danger m-l-10',
+        //         buttonsStyling: false
+        //     }).then(function () {
+        //         swal(
+        //             'Deleted!',
+        //             'Your file has been deleted.',
+        //             'success'
+        //         )
+        //     }, function (dismiss) {
+        //         // dismiss can be 'cancel', 'overlay',
+        //         // 'close', and 'timer'
+        //         if (dismiss === 'cancel') {
+        //             swal(
+        //                 'Cancelled',
+        //                 'Your imaginary file is safe :)',
+        //                 'error'
+        //             )
+        //         }
+        //     })
+        // });
+        // $('#sa-params').click(function () {
+        //     swal({
+        //         title: 'Are you sure?',
+        //         text: "You won't be able to revert this!",
+        //         type: 'warning',
+        //         showCancelButton: true,
+        //         confirmButtonText: 'Yes, delete it!',
+        //         cancelButtonText: 'No, cancel!',
+        //         confirmButtonClass: 'btn btn-success',
+        //         cancelButtonClass: 'btn btn-danger m-l-10',
+        //         buttonsStyling: false
+        //     }).then(function () {
+        //         swal(
+        //             'Deleted!',
+        //             'Your file has been deleted.',
+        //             'success'
+        //         )
+        //     }, function (dismiss) {
+        //         // dismiss can be 'cancel', 'overlay',
+        //         // 'close', and 'timer'
+        //         if (dismiss === 'cancel') {
+        //             swal(
+        //                 'Cancelled',
+        //                 'Your imaginary file is safe :)',
+        //                 'error'
+        //             )
+        //         }
+        //     })
+        // });
 
         //Custom Image
         $('#sa-image').click(function () {

@@ -152,9 +152,9 @@
         alertify.success("Success log message");
     });
 
-    demo("#alertify-success-callback", function(ev) {
-        alertify.success("Standard log message with callback", function() {
-            alertify.success("You clicked the notification");
+    demo("#alertify-success-callback", function (ev) {
+        alertify.success("Data Berhasil Di Hapus", function() {
+            alertify.success("Data Berhasil Di Hapus");
         });
     });
 

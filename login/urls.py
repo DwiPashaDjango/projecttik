@@ -43,6 +43,9 @@ urlpatterns = [
     path('t_kelompok/', views.t_kelompok, name='t_kelompok'),
     path('t_kelas/', views.t_kelas, name='t_kelas'),
     path('kls/hapus/<int:id_kelas>', views.h_kelas, name='h_kelas'),
+    path('d_pengunjung/', views.d_pengunjung, name='d_pengunjung'),
+    path('data/hapus/<int:id_pengunjung>',
+         views.h_pengunjung, name='h_pengunjung'),
 
     # url siswa
     path('petugas', views.petugas, name='petugas'),

@@ -27,13 +27,29 @@
             <div class="card-body">
                 <h5 class="header-title mb-3 mt-0">{{ jdl }}</h5>
 
-                {% for message in messages %}
-                    {% if message.tags == 'success' %} 
-                        <div class="alert alert-success">{{ message }}</div>
-                    {% else %}
-                        <div class="alert alert-danger">{{ message }}</div>
-                    {% endif %}
-                {% endfor %}
+                {% for row in messages %}
+                            {% if row.tags == 'success' %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "success",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% else %}
+                                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                                <script>
+                                    swal.fire({
+                                        title: "{{ row }}",
+                                        text: "",
+                                        icon: "warning",
+                                        reverseButtons: true
+                                    })
+                                </script>
+                            {% endif %}
+                        {% endfor %}
 
                 <form action="{% url 'request' %}" method="post">
                     {% csrf_token %}

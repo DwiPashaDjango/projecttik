@@ -4,6 +4,15 @@ from django.utils.timezone import now
 # Create your models here.
 
 
+class Pengunjung(models.Model):
+    username = models.CharField(max_length=60)
+    kls = models.CharField(max_length=70)
+    tanggal = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.username
+
+
 class Kelas(models.Model):
     kls = models.CharField(max_length=50)
 
