@@ -25,6 +25,7 @@ class User(AbstractUser):
     is_petugas = models.BooleanField('is_petugas', default=False)
     is_siswa = models.BooleanField('is_siswa', default=False)
     kelas_id = models.ForeignKey(Kelas, on_delete=models.CASCADE, null=True)
+    full_name = models.CharField(max_length=200, null=True)
 
 
 class Kelompok(models.Model):

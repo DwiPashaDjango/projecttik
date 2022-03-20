@@ -28,6 +28,13 @@ class SignUpForm(UserCreationForm):
             }
         )
     )
+    full_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control', 'placeholder': 'Full Name'
+            }
+        )
+    )
     email = forms.CharField(
         widget=forms.TextInput(
             attrs={
@@ -53,7 +60,7 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'password1', 'password2',
-                  'is_admin', 'is_siswa', 'kelas_id')
+                  'is_admin', 'is_siswa', 'kelas_id', 'full_name')
 
 
 class Formbuku(forms.ModelForm):

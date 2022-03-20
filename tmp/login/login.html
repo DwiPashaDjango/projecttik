@@ -50,11 +50,28 @@
                             {% if row.tags == 'success' %}
                                 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                                 <script>
-                                    swal.fire({
-                                        title: "{{ row }}",
-                                        text: "Sedang Loading",
-                                        icon: "success",
-                                        reverseButtons: true
+                                    let timerInterval
+                                        Swal.fire({
+                                        title: '{{ row }}',
+                                        html: 'Loading',
+                                        timer: 2000,
+                                        timerProgressBar: true,
+                                        icon: 'success',
+                                        didOpen: () => {
+                                            Swal.showLoading()
+                                            const b = Swal.getHtmlContainer().querySelector('b')
+                                            timerInterval = setInterval(() => {
+                                            b.textContent = Swal.getTimerLeft()
+                                            }, 100)
+                                        },
+                                        willClose: () => {
+                                            clearInterval(timerInterval)
+                                        }
+                                        }).then((result) => {
+                                        /* Read more about handling dismissals below */
+                                        if (result.dismiss === Swal.DismissReason.timer) {
+                                            console.log('I was closed by the timer')
+                                        }
                                     })
                                 </script>
                             {% else %}
@@ -63,7 +80,7 @@
                                     swal.fire({
                                         title: "{{ row }}",
                                         text: "Silahkan minta petugas perpustakaan untuk mendaftarkan",
-                                        icon: "warning",
+                                        icon: "error",
                                         reverseButtons: true
                                     })
                                 </script>

@@ -57,7 +57,7 @@
                             <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
-                                        <th class="border-top-0">Username</th>
+                                        <th class="border-top-0">Nama</th>
                                         <th class="border-top-0">Judul Buku</th>
                                         <th class="border-top-0">Kelas</th>
                                         <th class="border-top-0">Tanggal Peminjaman</th>                                    
@@ -74,7 +74,7 @@
                                         <td>{{ row.tanggal }}</td>
                                         <td>{{ row.t_pengembalian }}</td>
                                         <td>
-                                            <a href="{% url 'hapus_p' row.id %}" class="btn btn-danger">Hapus</a>
+                                            <a href="{% url 'hapus_p' row.id %}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -30,12 +30,28 @@
                     {% if row.tags == 'success' %}
                         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
                         <script>
-                            swal.fire({
-                                position: 'center',
+                            let timerInterval
+                                Swal.fire({
+                                title: 'Berhasil Mengubah Data Buku',
                                 icon: 'success',
-                                title: '{{ row }}',
-                                showConfirmButton: false,
-                                timer: '20000'
+                                html: 'Mohon Bersabar Sedang Loading',
+                                timer: 2000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                    Swal.showLoading()
+                                    const b = Swal.getHtmlContainer().querySelector('b')
+                                    timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                                    }, 100)
+                                },
+                                willClose: () => {
+                                    clearInterval(timerInterval)
+                                }
+                                }).then((result) => {
+                                /* Read more about handling dismissals below */
+                                if (result.dismiss === Swal.DismissReason.timer) {
+                                    console.log('I was closed by the timer')
+                                }
                             })
                         </script>
                     {% else %}
@@ -45,7 +61,8 @@
                                 title: "{{ row }}",
                                 text: "ubah data buku",
                                 icon: "warning",
-                                reverseButtons: true
+                                reverseButtons: true, 
+                                showConfirmButton: true
                             })
                         </script>
                     {% endif %}
@@ -58,7 +75,7 @@
                     </div>
 
                     <div class="float-right mt-2">
-                      <button type="submit" class="btn btn-primary">Simpan</button>
+                      <button class="btn btn-primary">Simpan</button>
                     </div>
                 </form>
             </div>

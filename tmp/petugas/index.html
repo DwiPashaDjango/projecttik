@@ -186,7 +186,7 @@
     alertify.set('notifier','position', 'top-left');
     var msg = alertify.success('Selamat Datang Di Perpustakaan Digital MAN 4 CIREBON',0, function(){
             if(--nagCount > 0){
-            setTimeout(function(){msg.push("Hallo {{ user.username }} ");}, 500);
+            setTimeout(function(){msg.push("Hallo {{ user.full_name }} ");}, 500);
             }
     });
 </script>

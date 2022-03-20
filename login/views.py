@@ -38,11 +38,11 @@ def login_view(request):
 
             if user is not None and user.is_admin:
                 login(request, user)
-                messages.success(request, 'Mohon Menunggu Sebentar')
+                messages.success(request, 'Berhasil Keluar')
                 return redirect('home_admin')
             elif user is not None and user.is_siswa:
                 login(request, user)
-                messages.success(request, 'Mohon Menunggu Sebentar')
+                messages.success(request, 'Berhasil Keluar')
                 return redirect('petugas')
             else:
                 messages.error(request, 'Akun Tidak Terdaftar')
