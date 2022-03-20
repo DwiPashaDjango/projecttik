@@ -120,15 +120,15 @@
     </div> <!-- end container -->
 </div>
 <!-- end wrapper -->
-<!-- <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <script>
     var nagCount = 2;
     alertify.set('notifier','position', 'top-left');
-    var msg = alertify.success('Selamat Datang Di Perpustakaan Digital MAN 4 CIREBON',0, function(){
+    var msg = alertify.success('Selamat Datang {{ user.full_name }}',0, function(){
             if(--nagCount > 0){
-            setTimeout(function(){msg.push("Hallo {{ user.username }} ");}, 500);
+            setTimeout(function(){msg.push("Selamat Bekerja Untuk Hari Ini");}, 500);
             }
     });
-</script> -->
+</script>
 
 {% include 'tmp2/footer.html' %}
