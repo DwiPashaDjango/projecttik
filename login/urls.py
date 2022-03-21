@@ -13,10 +13,11 @@ urlpatterns = [
     path('', views.login_view, name='login'),
     path('logout/', LogoutView.as_view(next_page='login'), name='logout'),
     # path('daftar/', views.daftar, name='daftar'),
-    # path('keluar/', views.__loader__(next_page='masuk'), name='keluar'),
 
     # api
     path('api/', include(router.urls)),
+    # error
+    path('eror/', views.error, name='eror'),
 
     # page admin
     path('home_admin/', views.home_admin, name='home_admin'),
@@ -55,6 +56,10 @@ urlpatterns = [
     path('pengembalian/', views.pengembalian, name='pengembalian'),
     path('profile/', views.profile, name='profile'),
     path('request/', views.request, name='request'),
+
+    # pengaturan
+    path('seting/', views.setting, name='seting'),
+    path('user/hsp/<int:id_user>', views.hapusUser, name='hapusUser'),
 ]
 
 if settings.DEBUG:

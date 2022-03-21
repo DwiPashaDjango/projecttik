@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+        <title>404</title>
+        <meta content="Perpustakaan digital" name="description" />
+        <meta content="Mannatthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+        <link href="{% static 'admin/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'admin/css/icons.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'admin/css/style.css' %}" rel="stylesheet" type="text/css">
+        
+        <link href="{% static 'admin/plugins/morris/morris.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+        <link rel="shortcut icon" href="https://elearning.man4cirebon.sch.id/__statics/upload/logo1634915297.png">
+</head>
+
+
+    <body>
+
+      
+<!-- Begin page -->
+<div class="accountbg"></div>
+<div class="wrapper-page">
+
+    <div class="card">
+        <div class="card-block">
+
+            <div class="ex-page-content text-center">
+                <h1 class="">404!</h1>
+                <h3 class="">Halaman Tidak Di Temukan</h3><br>
+
+                <button onclick="goBack()" class="btn btn-danger mb-5"><i class="mdi mdi-arrow-left-bold"></i></button>                                        
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back(-1);
+    }
+</script>

@@ -240,3 +240,31 @@ class Tambahkelas(forms.ModelForm):
     class Meta:
         model = Kelas
         fields = ['kls']
+
+
+class Edit(forms.ModelForm):
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+    email = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+    full_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'form-control'
+            }
+        )
+    )
+
+    class Meta:
+        model = User
+        fields = ['username', 'full_name', 'email']

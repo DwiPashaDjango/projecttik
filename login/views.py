@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .forms import Kelompokbuku, Pre_order, SignUpForm, LoginForm, Formbuku, Tambahkelas, pengembalianBuku, pinjamBuku
+from .forms import Edit, Kelompokbuku, Pre_order, SignUpForm, LoginForm, Formbuku, Tambahkelas, pengembalianBuku, pinjamBuku
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from .models import Buku, Pengembalian, Pengunjung, Pinjam, Request, User, Kelas
 from django.core.paginator import Paginator
 from login.resouce import Bukuresouce, Export_datapeminjam, Export_datapengembalian, Export_datarequest
+from django.contrib.auth.decorators import login_required, permission_required
 # Create your views here.
 
 
@@ -38,11 +39,9 @@ def login_view(request):
 
             if user is not None and user.is_admin:
                 login(request, user)
-                messages.success(request, 'Berhasil Keluar')
                 return redirect('home_admin')
             elif user is not None and user.is_siswa:
                 login(request, user)
-                messages.success(request, 'Berhasil Keluar')
                 return redirect('petugas')
             else:
                 messages.error(request, 'Akun Tidak Terdaftar')
@@ -52,6 +51,8 @@ def login_view(request):
     return render(request, 'login/login.html', {'form': form, 'msg': msg, 'jdl': judul})
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def home_admin(request):
     subJudul = 'Perpustakaan'
     judul = 'Dashboard'
@@ -59,6 +60,8 @@ def home_admin(request):
     return render(request, 'admin/admin.html', {'jdl': judul, 'sb': subJudul})
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def tambahPetugas(request):
     msg = None
     judul = 'Tambah Data Admin'
@@ -77,6 +80,7 @@ def tambahPetugas(request):
     return render(request, 'admin/t_petugas.html', {'form': form, 'jdl': judul, 'msg': msg})
 
 
+@permission_required('is_siswa', login_url='eror')
 def tambahsiswa(request):
     msg = None
     judul = 'Tambah Data Siswa'
@@ -95,6 +99,7 @@ def tambahsiswa(request):
     return render(request, 'admin/t_siswa.html', {'form': form, 'jdl': judul})
 
 
+@permission_required('is_siswa', login_url='eror')
 def tambah_buku(request):
     judul = 'Tambah Data Buku'
 
@@ -113,6 +118,7 @@ def tambah_buku(request):
     return render(request, 'admin/t_buku.html', {'form': form, 'jdl': judul})
 
 
+@permission_required('is_siswa', login_url='eror')
 def s_buku(request):
     judul = 'Data Buku'
     books = Buku.objects.all()
@@ -129,6 +135,7 @@ def s_buku(request):
     return render(request, 'admin/s_buku.html', konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
 def ubah(request, id_buku):
     buku = Buku.objects.get(id=id_buku)
     tmp = 'admin/ubah-buku.html'
@@ -152,6 +159,8 @@ def ubah(request, id_buku):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def hapusbuku(request, id_buku):
     buku = Buku.objects.filter(id=id_buku)
     buku.delete()
@@ -160,6 +169,8 @@ def hapusbuku(request, id_buku):
     return redirect('s_buku')
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def d_peminjam(request):
     tmp = 'admin/d_peminjam.html'
     pinjam = Pinjam.objects.all()
@@ -176,6 +187,8 @@ def d_peminjam(request):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def hapus_p(request, id_peminjam):
     pinjam = Pinjam.objects.filter(id=id_peminjam)
     pinjam.delete()
@@ -184,6 +197,8 @@ def hapus_p(request, id_peminjam):
     return redirect('d_peminjam')
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def pengembalian_user(request):
     tmp = 'admin/d_pengembalian.html'
     pengembalian = Pengembalian.objects.all()
@@ -200,6 +215,8 @@ def pengembalian_user(request):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def hapus_pngbl(request, id_pengembalian):
     pngbl = Pengembalian.objects.filter(id=id_pengembalian)
     pngbl.delete()
@@ -208,6 +225,8 @@ def hapus_pngbl(request, id_pengembalian):
     return redirect('pengembalian_user')
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def profile_admin(request):
     tmp = 'admin/profile/index.html'
 
@@ -217,6 +236,8 @@ def profile_admin(request):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def d_request(request):
     user = Request.objects.all()
     tmp = 'admin/request.html'
@@ -233,6 +254,8 @@ def d_request(request):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def r_hapus(request, id_request):
     rqst = Request.objects.filter(id=id_request)
     rqst.delete()
@@ -241,6 +264,8 @@ def r_hapus(request, id_request):
     return redirect('d_request')
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def d_user(request):
     tmp = 'admin/d_user.html'
     user = User.objects.all()
@@ -257,6 +282,8 @@ def d_user(request):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def u_hapus(request, id_user):
     user = User.objects.filter(id=id_user)
     user.delete()
@@ -265,6 +292,8 @@ def u_hapus(request, id_user):
     return redirect('d_user')
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def export_xls(request):
     buku = Bukuresouce()
     data = buku.export()
@@ -273,6 +302,8 @@ def export_xls(request):
     return response
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def e_datapeminjam(request):
     pmjm = Export_datapeminjam()
     data = pmjm.export()
@@ -281,6 +312,8 @@ def e_datapeminjam(request):
     return response
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def e_datapengembalian(request):
     pngbl = Export_datapengembalian()
     data = pngbl.export()
@@ -289,6 +322,8 @@ def e_datapengembalian(request):
     return response
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def e_request(request):
     rqst = Export_datarequest()
     data = rqst.export()
@@ -297,6 +332,8 @@ def e_request(request):
     return response
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def t_kelompok(request):
     judul = 'Tambah Kelompok Buku'
 
@@ -319,6 +356,8 @@ def t_kelompok(request):
     return render(request, 'admin/t_kelompok.html', konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def t_kelas(request):
     kls = Kelas.objects.all()
 
@@ -346,6 +385,8 @@ def t_kelas(request):
     return render(request, 'admin/t_kelas.html', konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def h_kelas(request, id_kelas):
     kls = Kelas.objects.filter(id=id_kelas)
     kls.delete()
@@ -354,6 +395,8 @@ def h_kelas(request, id_kelas):
     return redirect('t_kelas')
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def d_pengunjung(request):
     tmp = 'admin/d_pengunjung.html'
     data = Pengunjung.objects.all()
@@ -365,6 +408,8 @@ def d_pengunjung(request):
     return render(request, tmp, konteks)
 
 
+@permission_required('is_siswa', login_url='eror')
+@login_required(login_url="login")
 def h_pengunjung(request, id_pengunjung):
     data = Pengunjung.objects.filter(id=id_pengunjung)
     data.delete()
@@ -374,6 +419,15 @@ def h_pengunjung(request, id_pengunjung):
 # page siswa
 
 
+def error(request):
+    judul = 'EROR 404'
+    konteks = {
+        judul: 'jdl'
+    }
+    return render(request, 'error/index.html', konteks)
+
+
+@login_required(login_url="login")
 def petugas(request):
     buku = Buku.objects.all()
     p = Paginator(Buku.objects.all().order_by('?'), 3)
@@ -387,6 +441,7 @@ def petugas(request):
     return render(request, 'petugas/index.html', konteks)
 
 
+@login_required(login_url="login")
 def databuku(request):
     p = Paginator(Buku.objects.all(), 5)
     page = request.GET.get('page')
@@ -409,7 +464,7 @@ def databuku(request):
 #         books = Buku.objects.all()
 #     return render(request, 'petugas/s_buku.html', {'books': books})
 
-
+@login_required(login_url="login")
 def show(request, id_buku):
     data = Buku.objects.get(id=id_buku)
 
@@ -420,6 +475,7 @@ def show(request, id_buku):
     return render(request, 'petugas/tampilan/index.html', konteks)
 
 
+@login_required(login_url="login")
 def pinjam(request):
     tmp = 'petugas/pinjam.html'
 
@@ -441,6 +497,7 @@ def pinjam(request):
     return render(request, tmp, konteks)
 
 
+@login_required(login_url="login")
 def pengembalian(request):
     tmp = 'petugas/pengembalian.html'
 
@@ -462,6 +519,7 @@ def pengembalian(request):
     return render(request, tmp, konteks)
 
 
+@login_required(login_url="login")
 def profile(request):
     tmp = 'petugas/profile/index.html'
 
@@ -471,6 +529,7 @@ def profile(request):
     return render(request, tmp, konteks)
 
 
+@login_required(login_url="login")
 def request(request):
     tmp = 'petugas/request.html'
 
@@ -490,3 +549,23 @@ def request(request):
             'jdl': 'Pre-Order Buku'
         }
     return render(request, tmp, konteks)
+
+
+# pengaturan
+@login_required(login_url="login")
+def setting(request):
+    judul = 'Pengaturan'
+
+    konteks = {
+        'jdl': judul
+    }
+    return render(request, 'setting/index.html', konteks)
+
+
+@login_required(login_url="login")
+def hapusUser(request, id_user):
+    user = User.objects.filter(id=id_user)
+    user.delete()
+
+    messages.success(request, 'Akun Berhasil Di Hapus')
+    return redirect('login')

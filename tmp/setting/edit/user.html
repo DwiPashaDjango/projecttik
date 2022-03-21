@@ -1,0 +1,13 @@
+{% load static %}
+{% include 'tmp3/header.html' %}
+ 
+{% include 'tmp3/topbar.html' %}
+    <div class="card col-lg-8 mb-3">
+        <div class="card-body">
+            <form action="{% url 'editsiswa' data.id %}" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+            </form>
+        </div>
+    </div>
+{% include 'tmp3/footer.html' %}
