@@ -28,7 +28,7 @@
                 <div class="card m-b-30">
                     <div class="card-body"> 
                         <button onclick="goBack()" class="btn btn-primary"><i class="mdi mdi-arrow-left-bold"></i></button>                                  
-                        <a href="{% url 'seting' %}" class="btn btn-info float-right"><i class="fa fa-gear (alias)"></i></a>
+                        <a href="{% url 'seting' %}" class="btn btn-info float-right mb-2"><i class="fa fa-gear (alias)"></i></a>
                         <div class="">          
                             <div class="text-center">
                                  <img src="/media/default.png" alt="" class="rounded-circle img-thumbnail w-50 mb-3">
@@ -37,7 +37,7 @@
                                 {% csrf_token %}
 
                                 <div class="form-group mb-4">
-                                    <label for="id_username">Username</label>
+                                    <label for="id_username">Nisn</label>
                                     <input type="text" class="form-control" value="{{ user.username }}" readonly>
                                 </div>
                                 <div class="form-group mb-4">
